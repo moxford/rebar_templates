@@ -13,7 +13,7 @@ compile:
 	rebar compile
 
 generate: fix-perms
-	cd rel; rebar generate; cd ..
+	cd rel; rebar -f generate; cd ..
 
 fix-perms:
 	chmod 750 rel/files/erl

@@ -10,13 +10,13 @@ install() ->
     Routes = routes(),
     Dispatch = cowboy_router:compile([{'_', Routes}]),
     cowboy:start_http(web_listener, 
-		      proplists:get_value(start_count, [application:get_env({{srvid}}, web)], 30),
-		      [ {port, proplists:get_value(port, [application:get_env({{srvid}}, web)], 8090)} ],
+		      proplists:get_value(start_count, [application:get_env( {{srvid}}, web_processcount)], 30),
+		      [ {port, proplists:get_value(port, [application:get_env( {{srvid}}, web_port)], 8080)} ],
 		      [ {env, [{dispatch, Dispatch}]} ]
 		     ).
 
 routes() ->
-    {ok, App} = application:get_env({{srvid}}, application_name),
+    {ok,App} = application:get_application(),
     Webtypes = [{mimetypes, cow_mimetypes, web}],
     [
      {"/", web_root_handler, []},
