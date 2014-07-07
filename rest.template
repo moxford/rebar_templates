@@ -43,6 +43,9 @@
 {dir, "{{app_dir}}/rel"}.
 {dir, "{{app_dir}}/priv"}.
 
+%% common
+{template, "{{common_skel}}/Makefile", "{{app_dir}}/Makefile"}.
+
 %% config files
 {template, "{{common_skel}}/rebar.config.base", "{{app_dir}}/rebar.config"}.
 {template, "{{common_skel}}/reltool.config.base", "{{app_dir}}/rel/reltool.config"}.
@@ -50,7 +53,7 @@
 %% server bringup
 {template, "{{common_skel}}/src/skel.app.src", "{{app_dir}}/src/{{srvid}}.app.src"}.
 {template, "{{common_skel}}/src/skel_app.erl", "{{app_dir}}/src/{{srvid}}_app.erl"}.
-{template, "{{common_skel}}/src/skel_sup.erl", "{{app_dir}}/src/{{srvid}}.app.erl"}.
+{template, "{{common_skel}}/src/skel_sup.erl", "{{app_dir}}/src/{{srvid}}_sup.erl"}.
 
 %% OTP node
 {template, "{{common_skel}}/rel/files/erl", "{{app_dir}}/rel/files/erl"}.

@@ -1,4 +1,4 @@
--module({{srvid}}).
+-module({{srvid}}_app).
 
 -behaviour(application).
 
@@ -12,7 +12,7 @@
 start(_StartType, _StartArgs) ->
     
     {ok, _} = web_routes:install(),
-    {{srv_id}}_sup:start_link().
+    {{srvid}}_sup:start_link().
 
 stop(_State) ->
     ok.
