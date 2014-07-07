@@ -1,11 +1,21 @@
 %% -*- Erlang -*-
 {variables, [
     {srvid, "undefined"},
-    {app_dir, "."},
+    {app_dir, "./apps/"},
     {author_name, "Mike Oxford"},
     {author_email, "moxford@gmail.com"},
     {rest_skel, "rest_skel"},
     {common_skel, "common_skel"},
+    {mysql_host, "CONFIG_ME"},
+    {mysql_port, "CONFIG_ME"},
+    {mysql_user, "CONFIG_ME"},
+    {mysql_password, "CONFIG_ME"},
+    {mysql_poolname, mysql_pool},
+    {mysql_poolsize, 30},
+    {mysql_database, "CONFIG_ME"},
+    {mysql_encoding, utf8},
+
+
     {deps, "[
         {lager, \".*\",
          {git, \"https://github.com/basho/lager.git\", {tag,\"2.0.3\"}}},
@@ -38,15 +48,33 @@
 {template, "{{common_skel}}/reltool.config.base", "{{app_dir}}/rel/reltool.config"}.
 
 %% server bringup
-%%{template, "rest_skel/src/skel.app.src", "{{app_dir}}/src/{{srvid}}.app.src"}.
-%%{template, "rest_skel/src/skel_app.erl", "{{app_dir}}/src/{{srvid}}_app.erl"}.
-%%{template, "rest_skel/src/skel_sup.erl", "{{app_dir}}/src/{{srvid}}.app.erl"}.
-
 {template, "{{common_skel}}/src/skel.app.src", "{{app_dir}}/src/{{srvid}}.app.src"}.
 {template, "{{common_skel}}/src/skel_app.erl", "{{app_dir}}/src/{{srvid}}_app.erl"}.
 {template, "{{common_skel}}/src/skel_sup.erl", "{{app_dir}}/src/{{srvid}}.app.erl"}.
 
-%% web handler and routes
+%% OTP node
+{template, "{{common_skel}}/rel/files/erl", "{{app_dir}}/rel/files/erl"}.
+{template, "{{common_skel}}/rel/files/install_upgrade.escript", "{{app_dir}}/rel/files/install_upgrade.escript"}.
+{template, "{{common_skel}}/rel/files/nodetool", "{{app_dir}}/rel/files/nodetool"}.
+{template, "{{common_skel}}/rel/files/srvid", "{{app_dir}}/rel/files/{{srvid}}"}.
+{template, "{{common_skel}}/rel/files/srvid.cmd", "{{app_dir}}/rel/files/{{srvid}}.cmd"}.
+{template, "{{common_skel}}/rel/files/start_erl.cmd", "{{app_dir}}/rel/files/start_erl.cmd"}.
+{template, "{{common_skel}}/rel/files/sys.config", "{{app_dir}}/rel/files/sys.config"}.
+{template, "{{common_skel}}/rel/files/vm.args", "{{app_dir}}/rel/files/vm.args"}.
+
+%% web stuff
+{dir, "{{app_dir}}/priv/web"}.
+{dir, "{{app_dir}}/priv/ws"}.
+{dir, "{{app_dir}}/priv/web/html"}.
+{dir, "{{app_dir}}/priv/web/js"}.
+{dir, "{{app_dir}}/priv/web/css"}.
+{dir, "{{app_dir}}/priv/web/third-party"}.
+{dir, "{{app_dir}}/priv/web/dialogs"}.
+{dir, "{{app_dir}}/priv/web/images"}.
+{dir, "{{app_dir}}/priv/web/audio"}.
 {template, "{{rest_skel}}/src/web_routes.erl", "{{app_dir}}/src/web_routes.erl"}.
 {template, "{{rest_skel}}/src/web_root_handler.erl", "{{app_dir}}/src/web_root_handler.erl"}.
-    
+{template, "{{rest_skel}}/priv/web/html/index.html", "{{app_dir}}/priv/web/html/index.html"}.
+
+
+
