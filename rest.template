@@ -1,0 +1,44 @@
+{variables [
+    {name, "appname"},
+    {app_dir, "./gen"},
+    {author_name, "Mike Oxford"},
+    {author_email, "moxford@gmail.com"},
+    {template_name, "rest"},
+    {deps, [
+        {lager, ".*",
+         {git, "https://github.com/basho/lager.git", {tag,"2.0.3"}}},
+        {mimetypes, ".*",
+         {git, "https://github.com/spawngrid/mimetypes.git", {tag, "1.0"}}},
+        {cowlib, ".*",
+         {git, "https://github.com/extend/cowlib.git", {tag, "0.6.2"}}},
+        {ranch, ".*",
+         {git, "https://github.com/extend/ranch.git", {tag, "0.10.0"}}},
+        {cowboy, ".*",
+         {git, "https://github.com/extend/cowboy.git", {tag, "0.10.0"}}},
+        {emysql, ".*",
+         {git, "https://github.com/Eonblast/Emysql.git", master}},
+        {jiffy, ".*",
+         {git, "https://github.com/moxford/jiffy.git", master}}
+        %% {exometer, ".*",
+        %%  {git, "https://github.com/Feuerlabs/exometer.git", {tag, "0.5.3"}}}
+   ]}
+]}.
+
+%% directory structure
+{dir, "{{app_dir}}/src"}.
+{dir, "{{app_dir}}/rel"}.
+{dir, "{{app_dir}}/rel/files"}.
+
+%% config files
+{template, "rebar.config.base", "rebar.config"}.
+{template, "reltool.config.base", "{{app_dir}}/rel/files"}.
+
+%% server bringup
+{template, "src/skel.app.src", "src/{{srvid}}.app.src"}.
+{template, "src/skel_app.erl", "src/{{srvid}}_app.erl"}.
+{template, "src/skel_sup.erl", "src/{{srvid}}.app.erl"}.
+
+%% web handler and routes
+{template, "src/web_routes.erl", "src/web_routes.erl"}.
+{template, "src/web_root_handler.erl", "src/web_root_handler.erl"}.
+    
