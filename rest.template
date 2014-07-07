@@ -1,45 +1,52 @@
 %% -*- Erlang -*-
 {variables, [
-    {service_name, "srvid"},
-    {app_dir, "./gen/{{name}}"},
+    {srvid, "undefined"},
+    {app_dir, "."},
     {author_name, "Mike Oxford"},
     {author_email, "moxford@gmail.com"},
-    {template_name, "rest"}
-    ,{deps, [
-        {lager, ".*",
-         {git, "https://github.com/basho/lager.git", {tag,"2.0.3"}}},
-        {mimetypes, ".*",
-         {git, "https://github.com/spawngrid/mimetypes.git", {tag, "1.0"}}},
-        {cowlib, ".*",
-         {git, "https://github.com/extend/cowlib.git", {tag, "0.6.2"}}},
-        {ranch, ".*",
-         {git, "https://github.com/extend/ranch.git", {tag, "0.10.0"}}},
-        {cowboy, ".*",
-         {git, "https://github.com/extend/cowboy.git", {tag, "0.10.0"}}},
-        {emysql, ".*",
-         {git, "https://github.com/Eonblast/Emysql.git", master}},
-        {jiffy, ".*",
-         {git, "https://github.com/moxford/jiffy.git", master}}
-        %% {exometer, ".*",
-        %%  {git, "https://github.com/Feuerlabs/exometer.git", {tag, "0.5.3"}}}
-   ]}
+    {rest_skel, "rest_skel"},
+    {common_skel, "common_skel"},
+    {deps, "[
+        {lager, \".*\",
+         {git, \"https://github.com/basho/lager.git\", {tag,\"2.0.3\"}}},
+        {mimetypes, \".*\",
+         {git, \"https://github.com/spawngrid/mimetypes.git\", {tag, \"1.0\"}}},
+        {cowlib, \".*\",
+         {git, \"https://github.com/extend/cowlib.git\", {tag, \"0.6.2\"}}},
+        {ranch, \".*\",
+         {git, \"https://github.com/extend/ranch.git\", {tag, \"0.10.0\"}}},
+        {cowboy, \".*\",
+         {git, \"https://github.com/extend/cowboy.git\", {tag, \"0.10.0\"}}},
+        {emysql, \".*\",
+         {git, \"https://github.com/Eonblast/Emysql.git\", master}},
+        {jiffy, \".*\",
+         {git, \"https://github.com/moxford/jiffy.git\", master}}
+        %% {exometer, \".*\",
+        %%  {git, \"https://github.com/Feuerlabs/exometer.git\", {tag, \"0.5.3\"}}}
+    	]"    
+    }
 ]}.
 
 %% directory structure
+{dir, "{{app_dir}}/includes"}.
 {dir, "{{app_dir}}/src"}.
 {dir, "{{app_dir}}/rel"}.
-{dir, "{{app_dir}}/rel/files"}.
+{dir, "{{app_dir}}/priv"}.
 
 %% config files
-{template, "rebar.config.base", "rebar.config"}.
-{template, "reltool.config.base", "{{app_dir}}/rel/files"}.
+{template, "{{common_skel}}/rebar.config.base", "{{app_dir}}/rebar.config"}.
+{template, "{{common_skel}}/reltool.config.base", "{{app_dir}}/rel/reltool.config"}.
 
 %% server bringup
-{template, "src/skel.app.src", "src/{{srvid}}.app.src"}.
-{template, "src/skel_app.erl", "src/{{srvid}}_app.erl"}.
-{template, "src/skel_sup.erl", "src/{{srvid}}.app.erl"}.
+%%{template, "rest_skel/src/skel.app.src", "{{app_dir}}/src/{{srvid}}.app.src"}.
+%%{template, "rest_skel/src/skel_app.erl", "{{app_dir}}/src/{{srvid}}_app.erl"}.
+%%{template, "rest_skel/src/skel_sup.erl", "{{app_dir}}/src/{{srvid}}.app.erl"}.
+
+{template, "{{common_skel}}/src/skel.app.src", "{{app_dir}}/src/{{srvid}}.app.src"}.
+{template, "{{common_skel}}/src/skel_app.erl", "{{app_dir}}/src/{{srvid}}_app.erl"}.
+{template, "{{common_skel}}/src/skel_sup.erl", "{{app_dir}}/src/{{srvid}}.app.erl"}.
 
 %% web handler and routes
-{template, "src/web_routes.erl", "src/web_routes.erl"}.
-{template, "src/web_root_handler.erl", "src/web_root_handler.erl"}.
+{template, "{{rest_skel}}/src/web_routes.erl", "{{app_dir}}/src/web_routes.erl"}.
+{template, "{{rest_skel}}/src/web_root_handler.erl", "{{app_dir}}/src/web_root_handler.erl"}.
     
