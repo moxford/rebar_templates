@@ -21,12 +21,12 @@ routes() ->
     [
      {"/", web_root_handler, []},
      {"/ws", websocket_handler, []},
-     {"/html/[...]", cowboy_static, {priv_dir, App, "web/html"}, Webtypes},
-     {"/third-party/[...]", cowboy_static, {priv_dir, App, "web/third-party"}, Webtypes},
-     {"/css/[...]", cowboy_static, {priv_dir, App, "web/css"}, Webtypes}, 
-     {"/js/[...]", cowboy_static, {priv_dir, App, "web/js"}, Webtypes},
-     {"/dialogs/[...]", cowboy_static, {priv_dir, App, "web/dialogs"}, Webtypes},
-     {"/images/[...]", cowboy_static, {priv_dir, App, "web/images"}, Webtypes},
-     {"/audio/[...]", cowboy_static, {priv_dir, App, "web/audio"}, Webtypes}
+     {"/html/[...]", cowboy_static, {priv_dir, App, "web/html", Webtypes}},
+     {"/third-party/[...]", cowboy_static, {priv_dir, App, "web/third-party", Webtypes}},
+     {"/css/[...]", cowboy_static, {priv_dir, App, "web/css", Webtypes}}, 
+     {"/js/[...]", cowboy_static, {priv_dir, App, "web/js", Webtypes}},
+     {"/dialogs/[...]", cowboy_static, {priv_dir, App, "web/dialogs", Webtypes}},
+     {"/images/[...]", cowboy_static, {priv_dir, App, "web/images", Webtypes}},
+     {"/audio/[...]", cowboy_static, {priv_dir, App, "web/audio", Webtypes}}
      %%{"/lookup/:lookup_type", web_lookup_handler, []},
     ].
