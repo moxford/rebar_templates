@@ -1,0 +1,18 @@
+#!/usr/bin/env escript
+%% -*- erlang -*-
+%%! -smp enable -sname gen debug verbose
+
+main([AppName]) ->
+    generate([AppName, "."]);
+main(Opts = [_AppName, _OutputDir]) ->
+    generate(Opts);
+main(_) ->
+    usage().
+
+generate([AppName, OutputDir]) ->
+    Result = os:cmd(io_lib:format("rebar create template=rest srvid=~s app_dir=~s/~s", [AppName, OutputDir, AppName])),
+    io:format("~s~n", [Result]).
+
+usage() ->
+    io:format("Usage: ~s <app_name> <output_app_dir>~n", [escript:script_name()]),
+    halt(1).
