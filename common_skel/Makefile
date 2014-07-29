@@ -1,18 +1,21 @@
 
 
-.PHONY : all fix-perms deps get-deps compile generate
+.PHONY : all fix-perms deps get-deps compile gen devlink unlink
 
-all: deps compile generate
+all: deps compile gen
+
+deps: get-deps
 
 get-deps:
 	rebar get-deps
 
-deps: get-deps
-
 compile: 
 	rebar compile
 
-generate: fix-perms
+clean:
+	rebar clean
+
+gen: fix-perms
 	cd rel; rebar -f generate; cd ..
 
 fix-perms:
@@ -29,3 +32,12 @@ stop:
 
 console:
 	rel/{{srvid}}/bin/{{srvid}} console
+
+devlink:
+	#priv dir
+	rm -rf rel/{{srvid}}/lib/{{srvid}}-1/priv
+	ln -s ./../../../../priv rel/{{srvid}}/lib/{{srvid}}-1/priv
+
+unlink:
+	rm rel/{{srvid}}/lib/{{srvid}}-1/priv
+	make clean gen
