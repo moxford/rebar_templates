@@ -10,12 +10,12 @@ rebar (https://github.com/rebar/rebar)
     1) Run the gen.esc file (./gen.esc <app_name> <dir>)
 
     Building with make:
-        1) Go to the target directory and type 'make' (you can compile or gen by itself, too)
+    1) Go to the target directory and type 'make' (you can compile or gen by itself, too)
 
     Building with rebar:
     1) Go to the target directory
     2) rebar get-deps compile
-    3) cd rel/<app>
+    3) cd rel
     4) rebar generate
     5) cd ..
 
@@ -23,7 +23,7 @@ rebar (https://github.com/rebar/rebar)
     1) make <start|stop|console>
 
     Otherwise:
-    1) rel/<app>/bin/<app> <start|stop|console>
+    1) ./rel/<app>/bin/<app> <start|stop|console>
 
     Edit your web stuff in priv/web.  When you "generate" your applcation either through `rebar generate` or
     via `make` or `make gen` it builds eveything into a distribution and buries it down under rel/<app>/lib/<app>-<version>/
