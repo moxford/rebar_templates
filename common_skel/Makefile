@@ -15,7 +15,7 @@ compile:
 clean:
 	rebar clean
 
-gen: fix-perms
+gen: fix-perms stop
 	cd rel; rebar -f generate; cd ..
 
 fix-perms:
