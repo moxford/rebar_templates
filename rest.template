@@ -47,6 +47,7 @@
 
 %% common
 {template, "{{common_skel}}/Makefile", "{{app_dir}}/Makefile"}.
+{template, "{{common_skel}}/.gitignore", "{{app_dir}}/.gitignore"}.
 
 %% config files
 {template, "{{common_skel}}/rebar.config.base", "{{app_dir}}/rebar.config"}.
