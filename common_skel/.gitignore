@@ -1,5 +1,5 @@
 ebin/*
 deps/*
-rel/pointofsale
+rel/{{srvid}}
 \.#*
 
