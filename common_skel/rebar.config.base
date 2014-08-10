@@ -33,14 +33,14 @@
 %%{erl_first_files, ["mymib1", "mymib2"]}.
 
 %% Erlang compiler options
-{erl_opts, [no_debug_info,
-            {i, "includes"},
-            {src_dirs, ["src"]},
-            {platform_define,
-             "(linux|solaris|freebsd|darwin)", 'HAVE_SENDFILE'},
-            {platform_define, "(linux|freebsd)", 'BACKLOG', 128},
-            {parse_transform, lager_transform},
-            {platform_define, "R13", 'old_inets'}]}.
+{erl_opts, [no_debug_info
+            ,{parse_transform, lager_transform}
+            ,{i, "includes"}
+            ,{src_dirs, ["src"]},
+            ,{platform_define,
+             "(linux|solaris|freebsd|darwin)", 'HAVE_SENDFILE'}
+            ,{platform_define, "(linux|freebsd)", 'BACKLOG', 128}
+            ]}.
 
 %% MIB Options?
 {mib_opts, []}.
