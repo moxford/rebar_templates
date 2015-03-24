@@ -36,7 +36,7 @@
 {erl_opts, [no_debug_info
             ,{parse_transform, lager_transform}
             ,{i, "includes"}
-            ,{src_dirs, ["src"]},
+            ,{src_dirs, ["src"]}
             ,{platform_define,
              "(linux|solaris|freebsd|darwin)", 'HAVE_SENDFILE'}
             ,{platform_define, "(linux|freebsd)", 'BACKLOG', 128}
