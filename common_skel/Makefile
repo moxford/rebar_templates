@@ -26,7 +26,7 @@ start:
 	rel/{{srvid}}/bin/{{srvid}} start
 
 stop:
-	-if [ -f "rel/{{srvid}}/bin/{{srvid}}" ]; then rel/dropoff/bin/dropoff stop; fi
+	-if [ -f "rel/{{srvid}}/bin/{{srvid}}" ]; then rel/{{srvid}}/bin/{{srvid}} stop; fi
 	-killall epmd
 
 console:
